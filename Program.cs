@@ -1,5 +1,6 @@
 ﻿int select;
 
+// Массив продуктов: напиток, первое блюдо, второе блюдо
 MenuOption[] dictProduct = [
     new(){
         Name="Drink",
@@ -15,12 +16,16 @@ MenuOption[] dictProduct = [
     },
 ];
 
-// int client1_order1
+// Списки для выбора продуктов двумя клиентами
 List<int> client1 = new();
 List<int> client2 = new();
+
 while (true)
 {
+    // Главное меню программы
     Console.WriteLine("Выберите пункт: \n 1. Заполнить первого клиента \n 2. Заполнить второго клиента \n 3. Посчитать счет \n 0. Завершить программу");
+
+    // Проверка корректности ввода меню
     while (true)
     {
         bool isOk = int.TryParse(Console.ReadLine(), out select);
@@ -35,20 +40,25 @@ while (true)
     switch (select)
     {
         case 0:
+            // Завершение программы
             return;
+
         case 1:
             {
+                // Ввод выбора продуктов для клиента 1
                 Console.WriteLine("Выберите 2 продукта (0 = Drink, 1 = FirstEat, 2 = SecondEat):");
                 for (int i = 0; i < 2; i++)
                 {
                     int selectProd;
                     int.TryParse(Console.ReadLine(), out selectProd);
-                    client1.Add(selectProd);
+                    client1.Add(selectProd); // Сохраняем выбор продукта
                 }
             }
             break;
+
         case 2:
             {
+                // Ввод выбора продуктов для клиента 2
                 Console.WriteLine("Выберите 2 продукта (0 = Drink, 1 = FirstEat, 2 = SecondEat):");
                 for (int i = 0; i < 2; i++)
                 {
@@ -58,8 +68,10 @@ while (true)
                 }
             }
             break;
+
         case 3:
             {
+                // Подсчет и вывод заказа клиента 1
                 {
                     int totalClient = 0;
                     Console.WriteLine("Заказ клиента 1:");
@@ -70,6 +82,8 @@ while (true)
                     }
                     Console.WriteLine("Итого " + totalClient);
                 }
+
+                // Подсчет и вывод заказа клиента 2
                 {
                     int totalClient = 0;
                     Console.WriteLine("Заказ клиента 2:");
@@ -83,10 +97,10 @@ while (true)
             }
             break;
     }
-
 }
 
 
+// Структура для хранения данных меню: название и цена
 struct MenuOption
 {
     public required string Name;
